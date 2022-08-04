@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <link rel="icon" href="2.jpeg">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(61, 60, 60);
+        }
+        
+        .container {
+            width: 300px;
+            height: 500px;
+            box-shadow: 6px 6px 10px black, -6px -6px 10px rgb(241, 239, 239);
+            border-radius: 30px;
+            background-color: rgb(5, 255, 218);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        svg {
+            width: 200px;
+            height: 300px;
+        }
+        
+        #circle {
+            fill: transparent;
+            stroke-width: 15px;
+            stroke-dasharray: 450;
+            stroke: white;
+            position: relative;
+            transform: translate(30px, 30px);
+        }
+        
+        #circle1 {
+            fill: transparent;
+            stroke-width: 15px;
+            stroke-dasharray: 0;
+            stroke: rgb(64, 38, 136);
+            position: relative;
+            transform: translate(30px, 30px);
+        }
+        
+        p {
+            position: absolute;
+            font-size: 40px;
+            font-weight: bold;
+            top: 177px;
+            left: 130px;
+        }
+        .header{
+            position: absolute;
+            top: 2%;
+            left: 2%;
+            color: white;
+            display: flex;
+            
+        }
+        .item{
+            margin-left: 20%;
+            font-family: sans-serif;
+            font-size: 2em;
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+      <a href="index.html"><div class="item">Basic</div></a>
+      <a href="advanced.html"><div class="item">Advanced</div></a>
+    </div>
+    <div class="container">
+        <svg>
+            <circle id="circle1" cy="70px" cx="70px" r="70px"></circle>
+            <circle id="circle" cy="70px" cx="70px" r="70px"></circle>
+        </svg>
+        <p id="init">00</p>
+    </div>
+</body>
+<script>
+    var a = prompt("Enter a time in second");
+    var b = a;
+    var t = setInterval(() => {
+        var s = document.getElementById("circle");
+        s.style.strokeDashoffset = -(450 * a) / b;
+        a = a < 10 ? '0' + a : a;
+        document.getElementById("init").innerHTML = a;
+        console.log(a);
+        setTimeout(() => {
+            s.style.transition = "1s";
+        }, 10);
+        a--;
+        if (a == -1) {
+            clearInterval(t);
+        }
+    }, 1000);
+</script>
+
+</html>
